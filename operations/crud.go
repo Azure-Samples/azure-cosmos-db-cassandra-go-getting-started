@@ -48,7 +48,6 @@ func FindAllUsers(keyspace, table string, session *gocql.Session) []model.User {
 	results, _ := session.Query(fmt.Sprintf(findAllUsersQuery, keyspace, table)).Iter().SliceMap()
 
 	for _, u := range results {
-		//log.Println("user -- ", u)
 		users = append(users, mapToUser(u))
 	}
 	return users

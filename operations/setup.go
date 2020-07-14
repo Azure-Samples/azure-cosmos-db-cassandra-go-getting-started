@@ -33,10 +33,11 @@ func CreateKeySpace(keyspace string, session *gocql.Session) {
 	log.Println("Keyspace created")
 }
 
+// CreateUserTable creates a table
 func CreateUserTable(keyspace, table string, session *gocql.Session) {
 	err := session.Query(fmt.Sprintf(createTable, keyspace, table)).Exec()
 	if err != nil {
-		log.Println("failed to create table ", err)
+		log.Println("Failed to create table", err)
 	}
 	log.Println("Table created")
 }

@@ -45,21 +45,21 @@ func main() {
 
 	operations.DropKeySpaceIfExists(keyspace, session)
 	operations.CreateKeySpace(keyspace, session)
-	time.Sleep(2 * time.Second)
 
 	operations.CreateUserTable(keyspace, table, session)
-	time.Sleep(2 * time.Second)
 
 	for i := 1; i <= 5; i++ {
 		name := "user-" + strconv.Itoa(i)
 		operations.InsertUser(keyspace, table, session, model.User{ID: i, Name: name, City: cities[rand.Intn(len(cities))]})
 	}
-	time.Sleep(2 * time.Second)
 
 	user := operations.FindUser(keyspace, table, 1, session)
-	log.Println("Found User ", user)
+	log.Println("Found User", user)
 	time.Sleep(2 * time.Second)
 
 	users := operations.FindAllUsers(keyspace, table, session)
-	log.Println("Found Users ", users)
+	log.Println("Found Users")
+	for _, u := range users {
+		log.Println(u)
+	}
 }
