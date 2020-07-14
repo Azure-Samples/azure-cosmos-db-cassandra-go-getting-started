@@ -1,57 +1,50 @@
-# Project Name
+---
+page_type: sample
+languages:
+- go
+products:
+- azure
+description: "Azure Cosmos DB is a globally distributed multi-model database. One of the supported APIs is the Cassandra API"
+urlFragment: azure-cosmos-db-cassandra-go-getting-started
+---
 
-(short, 1-3 sentenced, description of the project)
+# Developing a Go app with Cassandra API using Azure Cosmos DB (`gocql` Driver)
+Azure Cosmos DB is a globally distributed multi-model database. One of the supported APIs is the Cassandra API. This sample walks you through creation of keyspace, table, inserting and querying the data.
 
-## Features
+## Prerequisites
 
-This project framework provides the following features:
+Before you can run this sample, you must have the following prerequisites:
 
-* Feature 1
-* Feature 2
-* ...
+- An Azure account with an active subscription. [Create one for free](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio). Or [try Azure Cosmos DB for free](https://azure.microsoft.com/try/cosmosdb/) without an Azure subscription.
+- [Go](https://golang.org/) installed on your computer, and a working knowledge of Go.
+- [Git](https://git-scm.com/downloads).
 
-## Getting Started
+## Running this sample
 
-### Prerequisites
+1. Clone this repository using `git clone https://github.com/Azure-Samples/azure-cosmos-db-cassandra-go-getting-started`.
 
-(ideally very short, if any)
+2. Change directories to the repo using `cd azure-cosmos-db-cassandra-go-getting-started`
 
-- OS
-- Library version
-- ...
+3. Set environment variables
 
-### Installation
+```shell
+export COSMOSDB_CASSANDRA_CONTACT_POINT=<Contact Point for Azure Cosmos DB Cassandra API>
+export COSMOSDB_CASSANDRA_PORT=<Port for Azure Cosmos DB Cassandra API>
+export COSMOSDB_CASSANDRA_USER=<Username for Azure Cosmos DB Cassandra API>
+export COSMOSDB_CASSANDRA_PASSWORD=<Password for Azure Cosmos DB Cassandra API>
+```
+4. Run the application
 
-(ideally very short)
+```shell
+go run main.go
+```
 
-- npm install [package name]
-- mvn install
-- ...
+## About the code
 
-### Quickstart
-(Add steps to get up and running quickly)
+The code included in this sample is intended to get you quickly started with a Go application that connects to Azure Cosmos DB with the Cassandra API.
 
-1. git clone [repository clone url]
-2. cd [respository name]
-3. ...
+## More information
 
-
-## Demo
-
-A demo app is included to show how to use the project.
-
-To run the demo, follow these steps:
-
-(Add steps to start up the demo)
-
-1.
-2.
-3.
-
-## Resources
-
-(Any additional resources or related projects)
-
-- Link to supporting information
-- Link to similar sample
-- ...
+- [Azure Cosmos DB](https://docs.microsoft.com/azure/cosmos-db/introduction)
+- [gocql - Cassandra Go driver](https://github.com/gocql/gocql)
+- [gocql reference](https://godoc.org/github.com/gocql/gocql)
