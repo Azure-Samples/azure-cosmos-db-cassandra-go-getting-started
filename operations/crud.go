@@ -3,7 +3,6 @@ package operations
 import (
 	"fmt"
 	"log"
-	"strconv"
 
 	"github.com/abhirockzz/gocass/model"
 	"github.com/gocql/gocql"
@@ -11,7 +10,7 @@ import (
 
 const (
 	createQuery       = "INSERT INTO %s.%s (user_id, user_name , user_bcity) VALUES (?,?,?)"
-	selectQuery       = "SELECT * FROM %s.%s where user_id = %s"
+	selectQuery       = "SELECT * FROM %s.%s where user_id = ?"
 	findAllUsersQuery = "SELECT * FROM %s.%s"
 )
 
@@ -29,7 +28,7 @@ func InsertUser(keyspace, table string, session *gocql.Session, user model.User)
 func FindUser(keyspace, table string, id int, session *gocql.Session) model.User {
 	var userid int
 	var name, city string
-	err := session.Query(fmt.Sprintf(selectQuery, keyspace, table, strconv.Itoa(id))).Scan(&userid, &name, &city)
+	err := session.Query(fmt.Sprintf(selectQuery, keyspace, table)).Bind(id).Scan(&userid, &name, &city)
 
 	if err != nil {
 		if err == gocql.ErrNotFound {
