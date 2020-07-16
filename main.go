@@ -7,9 +7,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/abhirockzz/gocass/model"
-	"github.com/abhirockzz/gocass/operations"
-	"github.com/abhirockzz/gocass/utils"
+	"github.com/Azure-Samples/azure-cosmos-db-cassandra-go-getting-started/model"
+	"github.com/Azure-Samples/azure-cosmos-db-cassandra-go-getting-started/operations"
+	"github.com/Azure-Samples/azure-cosmos-db-cassandra-go-getting-started/utils"
 )
 
 var (

@@ -1,4 +1,4 @@
-module github.com/abhirockzz/gocass
+module github.com/Azure-Samples/azure-cosmos-db-cassandra-go-getting-started
 
 go 1.14
 
