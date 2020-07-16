@@ -22,8 +22,16 @@ func GetSession(cosmosCassandraContactPoint, cosmosCassandraPort, cosmosCassandr
 	clusterConfig.Authenticator = gocql.PasswordAuthenticator{Username: cosmosCassandraUser, Password: cosmosCassandraPassword}
 	clusterConfig.SslOpts = &gocql.SslOptions{Config: &tls.Config{MinVersion: tls.VersionTLS12}}
 
-	clusterConfig.Timeout = 3 * time.Second
+	clusterConfig.ConnectTimeout = 10 * time.Second
+	clusterConfig.Timeout = 10 * time.Second
+	clusterConfig.DisableInitialHostLookup = true
+
+	// uncomment if you want to track time taken for individual queries
 	//clusterConfig.QueryObserver = timer{}
+
+	// uncomment if you want to track time taken for each connection to Cassandra
+	//clusterConfig.ConnectObserver = timer{}
+
 	session, err := clusterConfig.CreateSession()
 	if err != nil {
 		log.Fatal("Failed to connect to Azure Cosmos DB", err)
@@ -42,4 +50,11 @@ type timer struct {
 
 func (t timer) ObserveQuery(ctx context.Context, oq gocql.ObservedQuery) {
 	log.Printf("Time taken for '%s' = %v ", oq.Statement, time.Since(oq.Start))
+}
+
+func (t timer) ObserveConnect(oc gocql.ObservedConnect) {
+	if oc.Err != nil {
+		log.Println("Connection error: ", oc.Err)
+	}
+	log.Printf("Time taken for connection = %v ", time.Since(oc.Start))
 }
